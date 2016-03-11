@@ -1,3 +1,10 @@
 mocha
 koa
 supertest
+should
+koa-route
+koa-logger
+koa-basic-auth
+assert
+
+et faire le makefile
