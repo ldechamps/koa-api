@@ -7,7 +7,7 @@ describe('Hello World', function(){
   it('devrait renvoyer "Hello World"', function(done){
     request
     .get('/')
-    .auth('tj', 'tobi')
+    .auth('loic', 'loic')
     .expect(200)
     .expect('Hello World', done);
   });
@@ -18,7 +18,7 @@ describe('404', function(){
     it('devrait retourner une erreur 404', function(done){
       request
       .get('/toto')
-      .auth('tj', 'tobi')
+      .auth('loic', 'loic')
       .expect(404)
       .expect(/Page Not Found/, done);
     })
@@ -48,6 +48,22 @@ describe('autorisations', function(){
         .get('/')
         .auth('user', 'invalid password')
         .expect(401, done);
+    })
+  })
+})
+
+
+describe('Cookies Views', function(){
+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].forEach(function (i) {
+    describe('à l\'iteration #' + i, function(){
+      it('devrait mettre le nombre de vue dans le cookie et dans la vue', function(done){
+        request
+        .get('/count')
+        .auth('loic', 'loic')
+        .expect(200)
+        .expect('Set-Cookie', new RegExp('view=' + i))
+        .expect(i + ' views', done);
+      })
     })
   })
 })

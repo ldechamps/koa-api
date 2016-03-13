@@ -14,6 +14,7 @@ app.use(logger());
 app.use(auth({ name: 'loic', pass: 'loic' }));
 
 app.use(route.get('/', helloWorld));
+app.use(route.get('/count', count));
 app.use(pageNotFound);
 app.use(authentification);
 
@@ -28,6 +29,16 @@ function* authentification(next){
       throw err;
     }
   }
+}
+
+function* count(){
+  var n = ~~this.cookies.get('view') + 1;
+  this.cookies.set('view', n);
+  this.body = n + ' views';
+  
+  console.log(this.cookies.get('view'));
+  console.log(this.body);
+  
 }
 
 function* helloWorld(){
