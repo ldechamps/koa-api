@@ -28,6 +28,15 @@ app.use(simple_auth);
 app.use(mount('/', routes.middleware()));
 app.use(notFound);
 
+
+app.on('error', function(err){
+  if (process.env.NODE_ENV != 'test') {
+    console.log('devrait renvoyer l\'erreur %s au navigateur', err.message);
+    console.log(err);
+  }
+});
+
+
 if (!module.parent) {
     var port = 3000;
     console.log("ecoute sur le port : "+port)

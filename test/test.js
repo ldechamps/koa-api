@@ -63,3 +63,24 @@ describe('Cookies Views', function(){
     })
   })
 })
+
+describe('Errors', function () {
+  it('devrait attraper l\'erreur', function(done){
+    request
+    .get('/boomboom')
+    .expect(500)
+    .expect('Content-Type', /text\/html/, done);
+  })
+
+  it('devrait renvoyer le message', function(done){
+    app.once('error', function (err, ctx) {
+      err.message.should.equal('boom boom');
+      ctx.should.be.ok;
+      done();
+    })
+
+    request
+    .get('/boomboom')
+    .end(function(){});
+  })
+})

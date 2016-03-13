@@ -2,7 +2,7 @@
 
 module.exports = function *notFound (next){
         yield* next;
-        console.log(this.status);
+
         if (404 != this.status) return;
 
         this.status = 404;

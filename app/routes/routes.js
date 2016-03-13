@@ -6,7 +6,7 @@ var router = new Router();
  
 var catch_api_error = function *(next){
   try{
-    yield next;
+    yield* next;
   } catch(err){
     this.body = JSON.stringify({ "error": err.message });
   }
@@ -26,6 +26,37 @@ var helloWorld = function* (){
   this.status = 200;
   this.body = 'Hello World';
 }
+
+
+var error500 = function *(next){
+  try {
+    yield* next;
+  } catch (err) {
+    // some errors will have .status
+    // however this is not a guarantee
+    this.status = err.status || 500;
+    this.type = 'html';
+    this.body = '<p>Something <em>exploded</em>, please contact Maru.</p>';
+
+    console.log('500');
+    // since we handled this manually we'll
+    // want to delegate to the regular app
+    // level error handling as well so that
+    // centralized still functions correctly.
+    this.app.emit('error', err, this);
+  }
+};
+
+// response
+
+var boomboom = function *(){
+  throw new Error('boom boom');
+};
+
+router.get('/boomboom',
+    error500,
+    boomboom
+)
  
 router.post('/login',
   catch_api_error,
