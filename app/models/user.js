@@ -3,18 +3,24 @@
 // create the model for users and expose it to our app
 // require
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+//var bcrypt = require('bcrypt-nodejs');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
-    
-        email   : String,
-        password : String,
-        name : String,
-        admin: Boolean
-    
+  email: {
+    type: String,
+    trim: true,
+    lowercase: true,
+    required: 'email address is required',
+    unique: true
+  },
+  passwordhash: {
+    type: String,
+    required: 'password is required'
+  },
+  state: {}
 });
-
+/*
 // methods
 // generating a hash
 userSchema.methods.generateHash = function(password) {
@@ -95,4 +101,4 @@ userSchema.statics.findExcept = function(user, done){
 
 // create the model for users and expose it to our app
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);*/
