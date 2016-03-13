@@ -1,0 +1,29 @@
+{
+  "name": "mon-app",
+  "version": "0.0.1",
+  "description": "Mon application.",
+  "main": "app/server.js",
+  "author": "Loïc",
+  "dependencies": {
+    "grunt": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "jshint-stylish": "latest",
+    "method-override": "^2.3.5",
+    "mongoose": "latest",
+    "mocha": "latest",
+    "koa": "latest",
+    "supertest": "latest",
+    "should": "latest",
+    "koa-route": "latest",
+    "koa-logger": "latest",
+    "koa-basic-auth": "latest",
+    "assert": "latest",
+    "koa-session": "latest",
+    "koa-simple-auth": "latest",
+    "koa-mongo-rest": "latest"
+  }
+}

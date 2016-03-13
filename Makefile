@@ -6,7 +6,7 @@ test:
 		--harmony \
 		--reporter spec \
 		--require should \
-		test.js
+		test/test.js
         
         
 update: ;@echo "Updating ${PROJECT}..." \

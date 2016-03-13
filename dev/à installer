@@ -1,0 +1,24 @@
+mocha
+koa
+supertest
+should
+koa-route
+koa-logger
+koa-basic-auth
+assert
+koa-session
+koa-simple-auth
+koa-mongo-rest
+mongoose
+
+npm install bower
+npm install grunt
+
+et faire le makefile
+
+
+à voir sur npm koa-simple-auth
+à voir  ~~this.cookies.get
+
+a voir
+delete
