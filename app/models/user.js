@@ -20,7 +20,7 @@ var userSchema = mongoose.Schema({
   },
   state: {}
 });
-/*
+
 // methods
 // generating a hash
 userSchema.methods.generateHash = function(password) {
@@ -101,4 +101,38 @@ userSchema.statics.findExcept = function(user, done){
 
 // create the model for users and expose it to our app
 
-module.exports = mongoose.model('User', userSchema);*/
+
+module.exports = mongoose.model('User', userSchema);
+
+/*
+var db_url = "mongodb://localhost/users";
+module.exports.db = mongoose.createConnection(db_url);
+var User = require('../');
+
+userSchema.virtual('password').set(function(value) {
+  this._password = value;
+  this.passwordhash = bCrypt.hashSync(value, bCrypt.genSaltSync(10), null);
+});
+
+userSchema.path('passwordhash').validate(function(value) {
+  if (this._password) {
+    return (this._password.length >= 6 && this._password.length <= 64);
+  }
+}, "password must be between 6 and 64 characters");
+
+userSchema.methods.validatePassword = function(password) {
+  return bCrypt.compareSync(password, this.passwordhash);
+};
+
+userSchema.methods.savePromise = function() {
+  var self = this;
+  return new Promise(function(resolve, revoke) {
+    self.save(function(err, item, numberAffected) {
+      if (err) return revoke(err);
+      resolve(item, numberAffected);
+    });
+  });
+};
+
+module.exports = User.db.model('User', userSchema);
+*/

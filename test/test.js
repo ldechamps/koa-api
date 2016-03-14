@@ -23,7 +23,7 @@ describe('404', function(){
   })
 })
 
-describe('autorisations', function(){
+/*describe('autorisations', function(){
     describe('sans autorisation', function(){
         it('devrait renvoyer 401', function(done){
             request
@@ -47,7 +47,7 @@ describe('autorisations', function(){
         .expect(401, done);
     })
   })
-})
+})*/
 
 
 describe('Cookies Views', function(){
